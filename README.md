@@ -10,15 +10,18 @@ Regional teams at Good Cabs were struggling with late data and generic dashboard
 Technical Architecture
 
 The project follows the Medallion Architecture, processing data through three distinct layers:
+
 • Bronze: Raw data ingestion from Amazon S3 using the Autoloader feature for incremental file processing.
 • Silver: Cleaned and transformed data, including a programmatically generated Calendar/Date table and validated trip records.
 • Gold: Highly denormalized, business-ready views tailored for regional managers.
+
 Key Features & Technologies
 • Databricks LakeFlow SDP: A declarative framework that allows developers to define "what" the data should look like rather than "how" to process it, reducing code complexity (e.g., reducing a 135-line script to just 50 lines).
 • Auto CDC (Change Data Capture): Simplifies updates and deletes using a single API, handling SCD Type 1 logic without manual "merge" statements.
 • Automatic Orchestration: Dependencies and execution plans are managed automatically by the SDP framework.
 • Data Governance: Implemented via Unity Catalog, using Role-Based Access Control (RBAC) to ensure regional managers only access data relevant to their specific cities.
 • AI-Powered Analytics: Integrated Databricks Genie, enabling stakeholders to query data using natural language for instant insights, such as average ratings or revenue by city.
+
 Data Pipeline Details
 1. Ingestion: Data is extracted from an OLTP environment into Amazon S3 as CSV files.
 2. Processing:
